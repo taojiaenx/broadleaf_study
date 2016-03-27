@@ -13,6 +13,7 @@
         <param-value>site.root</param-value>
     </context-param>
 
+<!-- merge不同版本的context list -->
     <context-param>
         <param-name>patchConfigLocation</param-name>
         <param-value>
@@ -80,7 +81,7 @@
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
-
+<!-- 也是做merge之用 -->
     <listener>
         <listener-class>org.broadleafcommerce.common.web.extensibility.MergeContextLoader</listener-class>
     </listener>

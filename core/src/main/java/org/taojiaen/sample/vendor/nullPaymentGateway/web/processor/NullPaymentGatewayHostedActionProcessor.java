@@ -91,7 +91,6 @@ public class NullPaymentGatewayHostedActionProcessor extends AbstractAttributeMo
                 throw new RuntimeException("Unable to Create Null Payment Gateway Hosted Link", e);
             }
         }
-
         attrs.put("action", url);
         return attrs;
     }
