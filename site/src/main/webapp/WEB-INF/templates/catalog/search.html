@@ -1,9 +1,18 @@
 <th:block layout:decorator="layout/fullPageLayout">
 	<head th:include="/layout/partials/head (pageTitle='Search - Broadleaf Demo - Heat Clinic')"></head>
+	<blc:all_categories  />   
 	
 	<div layout:fragment="content">
 	    
 	    <div id="content" class="width_setter group" role="main">
+	     <nav>
+          <ul th:if="${categorites}">
+          <li th:each="cateory : ${categorites}" class="category_item">
+          <a  th:href="@{${cateory['Url']}}"> 
+          <span th:utext="${cateory['Name']}"></span></a>
+          </li>
+          </ul>
+     </nav>
 	    
 	        <section id="left_column">
 	    

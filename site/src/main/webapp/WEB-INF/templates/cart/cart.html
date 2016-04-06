@@ -25,7 +25,7 @@
                     <input type="hidden" name="COMPLETE_CHECKOUT_ON_CALLBACK" value="false"/>
                     <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;" alt="Submit Form" />
                 </form>
-                <form blc:null_payment_hosted_action="${paymentRequestDTO}" complete_checkout="${false}" method="POST">
+                <form blc:ali_payment_hosted_action="${paymentRequestDTO}" complete_checkout="${false}" method="POST">
                     <input type="hidden" name="TRANSACTION_AMT" th:value="${cart.total}"/>
                     <input type="hidden" name="ORDER_ID" th:value="${cart.id}"/>
                     <input type="hidden" name="COMPLETE_CHECKOUT_ON_CALLBACK" value="false"/>

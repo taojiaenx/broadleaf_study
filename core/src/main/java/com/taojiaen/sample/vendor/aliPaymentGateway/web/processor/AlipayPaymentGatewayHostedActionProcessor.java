@@ -54,6 +54,7 @@ public class AlipayPaymentGatewayHostedActionProcessor extends AbstractAttribute
 
         PaymentRequestDTO requestDTO = (PaymentRequestDTO) StandardExpressionProcessor.processExpression(arguments, element.getAttributeValue(attributeName));
         String url = "";
+        
 
         if (requestDTO != null) {
             if ( element.getAttributeValue("complete_checkout") != null) {

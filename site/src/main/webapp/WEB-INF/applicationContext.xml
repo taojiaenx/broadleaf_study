@@ -204,7 +204,10 @@
         </property>
     </bean> 
     -->
-    
+    <!--  <bean id="myAllcategoriesProcessor"
+    	class="org.taojiaen.processor.AllcategoriesProcessor">
+    </bean>-->
+
     <!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
     <!-- you may want to override the bean definitions by uncommenting these two beans -->
     <!-- to control whether or not templates are cacheable. This will generally be desireable -->
@@ -227,6 +230,20 @@
         <property name="characterEncoding" value="UTF-8" />
     </bean>
     -->
+    <bean id="myAllcategoriesProcessor"
+    	class="org.taojiaen.processor.AllcategoriesProcessor">
+    </bean>
+    <bean id="myCustomHomeProcessors" class="org.springframework.beans.factory.config.SetFactoryBean">
+        <property name="sourceSet">
+            <set>
+                <ref bean="myAllcategoriesProcessor"/>
+            </set>
+        </property>
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="myCustomHomeProcessors"/>
+        <property name="targetRef" value="blDialectProcessors"/>
+    </bean>
     
     <bean id="jsLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">

@@ -44,7 +44,6 @@
     <bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
       <property name="order" value="5"/>
     </bean>
-
     <!-- Scan for custom controllers -->
     <context:component-scan base-package="org.taojiaen.controller" />
     
