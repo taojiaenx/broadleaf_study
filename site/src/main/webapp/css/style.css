@@ -415,9 +415,10 @@ header {
             text-decoration: none;
         }
 .categoryItems{
+    padding-bottom: -5px;
     width: 912px;
     height: 40px;
-    margin: 0 20px 5px 20px;
+    margin-right:20px;
     padding-left: 30px;
     border-bottom: 1px solid #ddd;
 }
@@ -2123,7 +2124,6 @@ and (max-width : 480px) {
         border-right: none;
         border-bottom: 1px solid #FD4344;
         background-color: transparent;
-        padding-bottom: 0px;
     }
         nav ul li a.home {
             background: #e4ddd6;
