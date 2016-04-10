@@ -1,0 +1,9 @@
+<blc:all_categories  />
+<nav class="categoryItems">
+    <ul th:if="${categorites}" >
+        <li th:each="category : ${categorites}"
+                ><a th:name="${category['Name']}"
+                    th:href="@{${category['Url']}}" th:utext="${category['Name']}"
+                    class="category_item"></a></li>
+    </ul>
+</nav>

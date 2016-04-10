@@ -6,8 +6,16 @@ var readyf = function initCategories() {
 
     if (nowItem == null || nowItem.length == 0) {
         categories[0].className += ' active_category';
-    } else {
-        categories.getElementsByName(nowItem).className += ' active_category';
+        return;
+    }
+
+    var categoryName;
+    for(var i = 0; i < categories.length; ++i) {
+        categoryName = categories[i].name.replace(' ', '-').toLocaleLowerCase();
+        if (categoryName == nowItem) {
+            categories[i].className += ' active_category';
+            break;
+        }
     }
 };
 
