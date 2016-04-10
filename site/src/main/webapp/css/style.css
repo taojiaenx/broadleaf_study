@@ -343,12 +343,13 @@ header {
         cursor: pointer;
         display: block;
     }
-    
+
 #header_content #search {
-    position: absolute;
-    top: 60px;
-    right: 0;
 }
+    #header_content #search form{
+
+
+    }
 
     #header_content #search .search {
         height: 12px;
@@ -358,10 +359,9 @@ header {
     }
     
     #header_content #search #search_button {
-        width: 23px;
         height: 22px;
         border: none;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
         background: url(../img/search-button.png) top left no-repeat;
         text-indent: -5555px;
@@ -414,9 +414,10 @@ header {
             text-decoration: none;
         }
 .categoryItems{
-    width: 940px;
+    width: 912px;
     height: 40px;
-    margin: 0 20px;
+    margin: 0 20px 0px 20px;
+    padding-left: 30px;
     border-bottom: 1px solid #ddd;
 }
 nav {
@@ -456,12 +457,12 @@ nav {
         background: transparent;
     }
     nav ul li  .active_category{
-            margin: 1px 1px 0px 1px;
             border-top: none;
             border-left: none;
             border-right: none;
             border-bottom: 4px solid #FD4344;
             background-color: transparent;
+            padding-bottom: 6px;
         }
 
     .locale-fr_FR nav ul li a {
@@ -1542,13 +1543,21 @@ ul.payment_methods li {
 
     #products li {
         width: 220px;
-        height: 440px;
+        height: 340px;
         margin-left: 20px;
+        margin-bottom: 20px;
         text-align: center;
         float: left;
         display: inline;
         position: relative;
+        box-shadow: 0px 0px 3px #aaa;
     }
+        #products li:hover{
+            border:1px solid red;
+            margin-left:18px;
+            margin-bottom: 19px;
+            margin-top:-1px;
+        }
 
         #products li .new_badge {
             width: 60px;
@@ -1598,7 +1607,7 @@ ul.payment_methods li {
 
         #products li .content {
             width: 220px;
-            height: 118px;
+            height: 40px;
             font: 13px/18px 'Georgia',serif;
             color: #655c5a;
             overflow: hidden;
@@ -2061,7 +2070,13 @@ and (max-width : 480px) {
     #notification_bar {
         height: auto;
     }
-
+    .categoryItems{
+        width: 100%;
+        height: auto;
+        margin: 5px 0;
+        padding: 0;
+        display: block;
+    }
     nav {
         width: 100%;
         height: auto;
@@ -2084,6 +2099,7 @@ and (max-width : 480px) {
             display: inline-block;
         }
 
+
         nav ul li a {
             width: 148px;
             font: 12px/18px 'Open Sans', Helvetica, sans-serif;
@@ -2096,7 +2112,14 @@ and (max-width : 480px) {
             display: inline-block;
         }
 
-        
+    nav ul li  .active_category{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid #FD4344;
+        background-color: transparent;
+        padding-bottom: 0px;
+    }
         nav ul li a.home {
             background: #e4ddd6;
         }

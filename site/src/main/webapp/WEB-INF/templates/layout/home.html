@@ -6,7 +6,9 @@
 
 <head>
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic</title>
+
     <th:block th:replace="/layout/partials/head"></th:block>
+    <script blc:src="@{/js/categoryItemControl.js}"></script>
 </head>
 
 <body th:class="${'locale-' + session.blLocale.localeCode}">
@@ -28,10 +30,11 @@
 
        <!--   <blc:content contentType="Homepage Featured Products Title" /> -->
           <blc:all_categories  />
-		<nav>
-			<ul th:if="${categorites}" class="categoryItems">
-				<li th:each="category : ${categorites}" ><a
-					th:href="@{${category['Url']}}" th:utext="${category['Name']}" 
+		<nav class="categoryItems">
+			<ul th:if="${categorites}" >
+				<li th:each="category : ${categorites}"
+                        th:name="${category['Name']}"><a
+					th:href="@{${category['Url']}}" th:utext="${category['Name']}"
 					class="category_item"></a></li>
 			</ul>
 		</nav>
