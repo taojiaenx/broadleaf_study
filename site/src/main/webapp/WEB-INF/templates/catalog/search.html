@@ -5,14 +5,6 @@
 	<div layout:fragment="content">
 	    
 	    <div id="content" class="width_setter group" role="main">
-	     <nav>
-          <ul th:if="${categorites}">
-          <li th:each="cateory : ${categorites}" class="category_item">
-          <a  th:href="@{${cateory['Url']}}"> 
-          <span th:utext="${cateory['Name']}"></span></a>
-          </li>
-          </ul>
-     </nav>
 	    
 	        <section id="left_column">
 	    

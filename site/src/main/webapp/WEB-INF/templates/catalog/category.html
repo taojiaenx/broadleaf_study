@@ -1,20 +1,31 @@
 
 <th:block layout:decorator="layout/fullPageLayout">
 	<head>
+		<script blc:src="@{/js/categoryItemControl.js}"></script>
         <title th:utext="${category.name}"></title>
     </head>
     
 	<div layout:fragment="content">
+
+		<blc:all_categories  />
+		<nav class="categoryItems">
+			<ul th:if="${categorites}" >
+				<li th:each="category : ${categorites}"
+					><a th:name="${category['Name']}"
+						th:href="@{${category['Url']}}" th:utext="${category['Name']}"
+						class="category_item"></a></li>
+			</ul>
+		</nav>
 	    
 	    <div id="content" class="width_setter group" role="main">	        
 	        <section id="left_column">
 	    
-	            <header>
+	          <!--  <header>
 	                <h1 th:inline="text">
 	                    <span th:utext="#{category.viewing}">Viewing</span> [[${category.name}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:utext="#{category.of}">of</span> [[${result.totalResults}]])
 	                </h1>
 	                <div th:substituteby="catalog/partials/productSortOptions"></div>
-	            </header>
+	            </header>-->
 	            
 	            <ul th:if="${products}" id="products" class="group">
 	                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>

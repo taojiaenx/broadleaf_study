@@ -7,12 +7,14 @@
 <head>
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic - Checkout</title>
     <th:block th:replace="/layout/partials/head"></th:block>
+    <script blc:src="@{/js/categoryItemControl.js}"></script>
 </head>
 
 <body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
 
     <header th:substituteby="layout/partials/headerCheckout" />
+
     
     <div id="checkout_content" class="width_setter group" role="main">
     
