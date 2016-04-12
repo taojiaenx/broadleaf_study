@@ -2117,14 +2117,25 @@ and (max-width : 480px) {
             background: #e4ddd6;
             display: inline-block;
         }
-
+    nav ul li .category_item{
+        color: #342020;
+        padding:  0;
+        text-align: center;
+        margin-bottom: 1px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        display: inline-block;
+    }
     nav ul li  .active_category{
         border-top: none;
         border-left: none;
         border-right: none;
         border-bottom: 1px solid #FD4344;
         background-color: transparent;
-        margin: 0 5px 5px 0;
+        padding:  0px;
+        margin: 0;
+        display: inline-block;
     }
     categoryItems ul li a.home {
             background: #e4ddd6;
