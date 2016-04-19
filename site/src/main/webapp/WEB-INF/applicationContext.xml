@@ -59,7 +59,7 @@
     <!--for custom resource retrieval beyond the scope of the existing implementation, ResourcePurgeServiceImpl can be subclassed-->
     <!--to provide custom resource retrieval functionality. Please see Quartz documentation for more advanced configuration,-->
     <!--such as clustering.-->
-
+    <bean id="blCustomerService" class="com.taojiaen.security.MDCustomerServiceImpl" />
     <!--<bean id="purgeCartConfig" class="org.springframework.beans.factory.config.MapFactoryBean">-->
         <!--<property name="sourceMap">-->
             <!--<map>-->
@@ -133,7 +133,7 @@
     <!--     </bean> -->
     <!--     <bean id="solrAdminServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
     <!--         <constructor-arg value="${solr.url.admin}"/> -->
-    <!--     </bean> -->
+    
     <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
         <constructor-arg name="solrServer" ref="${solr.source.primary}" />
         <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
