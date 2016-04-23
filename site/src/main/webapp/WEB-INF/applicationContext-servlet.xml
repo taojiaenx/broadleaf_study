@@ -22,6 +22,7 @@
 
     <!-- Scan DemoSite Sample Payment Gateway Implementation -->
     <context:component-scan base-package="org.taojiaen.sample" />
+    
 
     <!-- Turn on AOP annotations (required by Broadleaf) -->
     <aop:config/>

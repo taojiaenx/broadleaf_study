@@ -73,5 +73,19 @@
         <property name="targetRef" value="blPaymentGatewayConfigurationServices"/>
     </bean>
     <!-- /End DemoSite NullPaymentGateway Config -->
-
+    <!-- 针对solr search  的修改-->
+    <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+	     <constructor-arg value="${solr.url}" />
+    </bean>
+	<bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg value="${solr.url.reindex}" />
+	</bean>
+	<bean id="blSearchService"
+		class="org.broadleafcommerce.core.search.service.solr.ExtSolrSearchServiceImpl">
+		<constructor-arg name="solrServer" ref="${solr.source}" />
+		<constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
+	</bean>
+	
+	<!-- catalog修改 -->
+	<bean id="blCatalogService" class="com.taojiaen.sample.slor.LLCatalogServiceImpl" />
 </beans>

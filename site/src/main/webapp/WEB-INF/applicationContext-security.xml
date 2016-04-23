@@ -28,6 +28,10 @@
     <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />
     <sec:http pattern="/favicon.ico" security="none" />       
     
+    
+    
+    
+    
     <!-- Set up Spring security for the application -->
     <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" disable-url-rewriting="true">
         <!-- We handle session fixation protection ourselves  -->
@@ -79,6 +83,8 @@
            </sec:password-encoder>
         </sec:authentication-provider>
    </sec:authentication-manager>
+   
+
     
     <!-- Configuration for salting user passwords. If you would like to change this property or generate a random salt to store
         on a per-customer basis or if you need to allow users to change their password then you will need to modify this
