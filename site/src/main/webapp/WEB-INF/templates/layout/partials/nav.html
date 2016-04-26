@@ -1,4 +1,4 @@
-<nav>
+<div class="site-header">
     <div th:remove="all">
         <!--
              This template displays the navigation of the site by looking up the menu named "headerNav"
@@ -6,12 +6,14 @@
         -->
     </div>
     <blc:menu resultVar="menuItems" menuName="Header Nav" />
+    <div class="container">
     <div class="header-nav">
-    <ul  class="nav-list J_navMainList clearfix" th:if="${not #lists.isEmpty(menuItems)}">
+     <ul  class="nav-list J_navMainList clearfix" th:if="${not #lists.isEmpty(menuItems)}">
         <li class="nav-item" th:each="menuItem : ${menuItems}">
 
-            <a th:href="@{${menuItem.url}}" th:class="${menuItemStat.first}? 'home'">
-                <span th:utext="${menuItem.label}"></span>
+            <a class="link" th:href="@{${menuItem.url}}">
+                <span class="text" th:utext="${menuItem.label}"></span>
+                <span class="arrow"></span>
             </a>
             <ul th:if="${not #lists.isEmpty(menuItem.submenu)}" class="sub-menu">
                 <li th:each="submenuItem : ${menuItem.submenu}">
@@ -28,10 +30,11 @@
         </li>
     </ul>
     </div>
-    <div id="search">
-           <blc:form th:action="@{/search}" method="GET">
-            <input type="search" class="search" name="q" th:value="${originalQuery}" />
-            <input type="submit" id="search_button" value="go" />
+    <div id="search" class="header-search">
+           <blc:form id="J_searchForm" class="search-form clearfix" th:action="@{/search}" method="GET">
+            <input type="search" id="search" class="search-text" name="q" th:value="${originalQuery}" />
+            <input type="submit" class="search-btn iconfont" id="search_button" value="" />
             </blc:form>
         </div>
-</nav>
+    </div>
+</div>
