@@ -6,8 +6,9 @@
         -->
     </div>
     <blc:menu resultVar="menuItems" menuName="Header Nav" />
-    <ul th:if="${not #lists.isEmpty(menuItems)}">
-        <li th:each="menuItem : ${menuItems}">
+    <div class="header-nav">
+    <ul  class="nav-list J_navMainList clearfix" th:if="${not #lists.isEmpty(menuItems)}">
+        <li class="nav-item" th:each="menuItem : ${menuItems}">
 
             <a th:href="@{${menuItem.url}}" th:class="${menuItemStat.first}? 'home'">
                 <span th:utext="${menuItem.label}"></span>
@@ -26,4 +27,11 @@
 
         </li>
     </ul>
+    </div>
+    <div id="search">
+           <blc:form th:action="@{/search}" method="GET">
+            <input type="search" class="search" name="q" th:value="${originalQuery}" />
+            <input type="submit" id="search_button" value="go" />
+            </blc:form>
+        </div>
 </nav>

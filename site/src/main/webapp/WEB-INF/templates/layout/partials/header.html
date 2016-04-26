@@ -1,37 +1,35 @@
 <header>
-    <div id="header_content">
-        <div id="cart_info">
+    <div class="site-topbar">
+        <div class="container">
 
-            <div th:if="${customer.anonymous}"  th:remove="tag">
+            <div class="topbar-info"  id="J_userInfo" th:if="${customer.anonymous}"  
+            >
 
-                <a class="account" th:href="@{/login}">
+                <a class="link" th:href="@{/login}">
                     <span th:utext="#{home.login}">Login</span>
                 </a>
-                &nbsp;|&nbsp; 
-                <a class="account" th:href="@{/register}">
+                <span class="sep">|</span>
+                <a class="link" th:href="@{/register}">
                     <span th:utext="#{home.register}">Register</span>
                 </a>
-                &nbsp;|&nbsp; 
             </div>
-            <div th:unless="${customer.anonymous}" th:remove="tag">
+            <div class="topbar-info"  id="J_userInfo"
+            th:unless="${customer.anonymous}">
                 <span><span th:utext="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:utext="${customer.firstName}"></a></span>
-                &nbsp;|&nbsp; 
-                <a th:href="@{/logout}">
+                <span class="sep">|</span> 
+                <a class="link" th:href="@{/logout}">
                     <span th:utext="#{home.logout}">Logout</span>
                 </a>
-                &nbsp;|&nbsp; 
             </div>
-
-
-            <a id="cartLink" class="modalcart" th:href="@{/cart}">
-                <img blc:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
-                &nbsp; 
+            <div class="topbar-cart" id="J_miniCartTrigger">
+            <a class="cart-mini" id="J_miniCartBtn" th:href="@{/cart}">
+                <i class="iconfont"></i>
+                购物车
                 <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
                 <span id="headerCartItemWordPlural_i18n" style="display: none;" th:utext="#{home.items}" />
-                <span class="headerCartItemsCount" th:utext="${cart.itemCount}" />
-                <span class="headerCartItemsCountWord" th:utext="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" />
+                <span class="cart-mini-num J_cartNum" th:text= "'&nbsp;(' + ${cart.itemCount}+')'" />
             </a>
-
+            </div>
         </div>
 
        <!--  <div id="languages">
@@ -58,13 +56,7 @@
 
         </div>-->
 
-        <div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>
+   <!--  <div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>-->
 
-        <div id="search">
-           <blc:form th:action="@{/search}" method="GET">
-            <input type="search" class="search" name="q" th:value="${originalQuery}" />
-            <input type="submit" id="search_button" value="go" />
-            </blc:form>
-        </div>
     </div>
 </header>

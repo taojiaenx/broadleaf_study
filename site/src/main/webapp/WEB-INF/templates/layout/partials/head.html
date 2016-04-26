@@ -15,8 +15,10 @@
     
     <blc:bundle name="style.css" 
                 mapping-prefix="/css/"
-                files="style.css,
-                       jquery.rating.css" />
+                files="base.min.css,
+                       index.min.css,
+                       jquery.rating.css,
+                       style.css" />
     
     <link rel="stylesheet" th:unless="${#strings.isEmpty(additionalCss)}" />
     
