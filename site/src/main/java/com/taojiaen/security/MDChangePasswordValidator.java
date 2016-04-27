@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.broadleafcommerce.common.security.util.PasswordChange;
 import org.broadleafcommerce.core.web.controller.account.validator.ChangePasswordValidator;
+import org.broadleafcommerce.menu.domain.MenuItem;
 import org.broadleafcommerce.profile.web.core.CustomerState;
 import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 import org.springframework.validation.Errors;
@@ -15,6 +16,7 @@ public class MDChangePasswordValidator extends ChangePasswordValidator{
 	
 	@Override
 	public void validate(PasswordChange passwordChange, Errors errors) {
+		MenuItem menuItem = null;
 
         String currentPassword = encoder.encodePassword(passwordChange.getCurrentPassword(),
         		CustomerState.getCustomer().getUsername());

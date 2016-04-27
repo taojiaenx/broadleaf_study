@@ -1,0 +1,10 @@
+<div class="figure figure-thumb">
+	<a th:href="@{*{url}}"> <img th:if="*{media['primary']}"
+		blc:src="@{*{media['primary'].url} + '?browse'}" th:alt="*{name}"
+		width="160" height="110" />
+	</a>
+</div>
+<div class="title">
+	<a th:href="@{*{url}}" th:utext="*{name}" />
+</div>
+<p class="price" th:utext="*{salePrice}"></p>

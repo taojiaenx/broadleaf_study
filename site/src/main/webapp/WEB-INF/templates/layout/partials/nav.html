@@ -15,7 +15,19 @@
                 <span class="text" th:utext="${menuItem.label}"></span>
                 <span class="arrow"></span>
             </a>
-            <ul th:if="${not #lists.isEmpty(menuItem.submenu)}" class="sub-menu">
+            
+           <div th:if="'CATEGORY' == ${menuItem.menuType}" class="item-children">
+                <div class="container">
+                <ul class="children-list clearfix">
+                
+                </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+     <!--        <ul th:if="${not #lists.isEmpty(menuItem.submenu)}" class="sub-menu">
                 <li th:each="submenuItem : ${menuItem.submenu}">
                     <a th:href="@{${submenuItem.url}}" th:utext="${submenuItem.label}"  class="sub-menu"></a>
 
@@ -25,7 +37,7 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul>-->
 
         </li>
     </ul>
