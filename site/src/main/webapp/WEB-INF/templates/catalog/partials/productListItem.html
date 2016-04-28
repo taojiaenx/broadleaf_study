@@ -1,4 +1,17 @@
-<div th:if="*{featuredProduct}" class="new_badge">New!</div>
+<div class="figure figure-img">
+<a th:href="@{*{url}}">
+<img th:if="*{media['primary']}" blc:src="@{*{media['primary'].url} + '?browse'}" th:alt="*{name}" 
+width="200" height="200"/>
+</a>
+</div>
+<p class="desc" th:utext="*{description}"/>
+<h2 class="title">
+ <a th:href="@{*{url}}" th:utext="*{name}" />
+</h2>
+<p class="price" th:utext="*{salePrice}"/>
+
+
+<!--  <div th:if="*{featuredProduct}" class="new_badge">New!</div>
 
 <div class="image">
     <a th:href="@{*{url}}">
@@ -15,9 +28,9 @@
 </div>
 
 <div class="content">
-    <div class="title" th:utext="*{name}"></div>
+    <div class="title" th:utext="*{name}"></div>-->
    <!-- <p th:utext="*{longDescription}"></p>-->
-</div>
+<!--  </div>
 
 <div th:class="*{'productActions productActions' + id}"
      th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
@@ -46,4 +59,4 @@
     <h3 th:utext="*{name}"></h3>
     <div class="product-options" th:substituteby="catalog/partials/productOptions"/>
     <input type="button" class="addToCart" th:value="#{product.buyNow}" />
-</div>
+</div>-->

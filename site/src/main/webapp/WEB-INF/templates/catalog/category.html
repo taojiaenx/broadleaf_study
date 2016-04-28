@@ -4,20 +4,11 @@
 		<script blc:src="@{/js/categoryItemControl.js}"></script>
         <title th:utext="${category.name}"></title>
     </head>
-	<div layout:fragment="content">
-		<blc:all_categories  />
-		<nav class="categoryItems">
-			<ul th:if="${categorites}" >
-				<li th:each="category : ${categorites}"
-						><a th:name="${category['Name']}"
-							th:href="@{${category['Url']}}" th:utext="${category['Name']}"
-							class="category_item"></a></li>
-			</ul>
-		</nav>
+	<div layout:fragment="content" class="content">
 
 
-		<div id="content" class="width_setter group" role="main">
-	        <section id="left_column">
+
+		<div class="container" role="main">
 	    
 	          <!--  <header>
 	                <h1 th:inline="text">
@@ -25,9 +16,12 @@
 	                </h1>
 	                <div th:substituteby="catalog/partials/productSortOptions"></div>
 	            </header>-->
-	            <ul th:if="${products}" id="products" class="group">
-	                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-	            </ul>
+	            <div class="goods-list-box" th:if="${products}" id="products">
+	               <div class="goods-list clearfix">
+	                <div th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="goods-item" >
+	                </div>
+	                </div>
+	            </div>
 	            
 	            <ul th:if="${skus}" id="products" class="group">
 	                <li th:each="sku : ${skus}" th:object="${sku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
@@ -35,9 +29,8 @@
 	            
 	            <div th:substituteby="catalog/partials/productPagingOptions" />
 	            
-	        </section>
 	    
-	        <section id="right_column">
+	      <!--  <section id="right_column">
 	            <header><span th:utext="#{category.filterResults}">Filter your results</span></header>
 	            <div id="options">
 	                
@@ -61,7 +54,7 @@
 	                </section>  
 	                
 	            </div>
-	        </section>
+	        </section> -->
 	            
 	    </div>
 	    

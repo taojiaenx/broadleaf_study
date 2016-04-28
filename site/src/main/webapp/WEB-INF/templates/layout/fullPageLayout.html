@@ -12,10 +12,9 @@
 <body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
     <header th:substituteby="layout/partials/header" />
-    
+    <nav th:substituteby="layout/partials/nav" /> 
     <div id="content" class="width_setter group" role="main">
-    
-        <nav th:substituteby="layout/partials/nav" />
+   
         
         <div layout:fragment="content" />
             

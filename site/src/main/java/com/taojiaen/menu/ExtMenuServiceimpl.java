@@ -74,6 +74,7 @@ public class ExtMenuServiceimpl extends MenuServiceImpl{
 
             dto.setSubmenu(submenu);
         }
+        dto.setCategoryId(String.valueOf(category.getId()));
         dto.setMenuType(MenuItemType.CATEGORY.getType());
         return dto;
     }
