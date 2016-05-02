@@ -1,7 +1,6 @@
 <th:block layout:decorator="layout/fullPageLayout">
     <head>
         <title th:utext="${product.name}"></title>
-        <script blc:src="@{/js/product.js}"></script>
     </head>
 
     <div layout:fragment="content">
@@ -27,10 +26,6 @@
                 <th:block th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
                                    availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
                                    inCart=${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}">
-                    <div class="edit-input">
-                        <span class="watermark_container" style="display: inline-block; position: relative;"><label id="watermark" for="blessingMessage" style="position: absolute; display: block; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(153, 153, 153); left: 10px; top: 4px; text-align: left; pointer-events: none; opacity: 1;">给TA捎句话吧（30个字以内）</label><textarea style="margin-bottom:2px" id="blessingMessage" class="input-width jq_watermark" rows="4" maxlength="30" onchange="checkLength(this)" onkeyup="checkLength(this)" onpaste="checkLength(this)" data-jq-watermark="processed"></textarea></span>
-                        <div style="color: #999999;">您还可以输入<span id="wordCount">30</span>个字</div>
-                    </div>
                     <blc:form method="POST" th:action="@{/cart/add}">
                         <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
                             <div class="form50">
@@ -110,10 +105,9 @@
                 <a th:href="@{*{#strings.replace(media['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
                     <img blc:src="@{*{media['primary'].url}+ '?browse'}" alt='' align="left" id="main_image" />
                 </a>
-                <div id="blessingShow">您的祝福语将显示在这里</div>
             </div>
             
-           <!-- <div id="product_thumbs_container">
+            <div id="product_thumbs_container">
                 <ul id="product_thumbs" class="clearfix">
                     <li>
                         <a th:if="*{media['primary']}" href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}+'?browse'}__'', largeimage: ''__@{*{media['primary'].url}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
@@ -131,7 +125,7 @@
                         <p class="thumbs_nav" th:utext="${iterStat.count + 1} + ' of ' + *{#maps.size(media) > 3 ? 3 : #maps.size(media)}"></p>
                     </li>
                 </ul>
-            </div>-->
+            </div>
             
             <div class="clearfix"></div>
                 <div id="customer-reviews-container">
