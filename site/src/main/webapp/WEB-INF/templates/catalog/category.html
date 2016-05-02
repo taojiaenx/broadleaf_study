@@ -16,7 +16,7 @@
 	                </h1>
 	                <div th:substituteby="catalog/partials/productSortOptions"></div>
 	            </header>-->
-	            <div class="goods-list-box" th:if="${products}" id="products">
+	            <div class="goods-list-box" th:if="${products}">
 	               <div class="goods-list clearfix">
 	                <div th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="goods-item" >
 	                </div>
