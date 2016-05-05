@@ -1,56 +1,51 @@
 <th:block layout:decorator="layout/fullPageNoNavLayout">
 	<head>
-	<link rel="stylesheet" href="/css/buy-choose.min.css" />
+<link rel="stylesheet" href="/css/buy-choose.min.css" />
 <title th:utext="${product.name}"></title>
 	</head>
 
-	<div class="container buy-choose-box" layout:fragment="content">
-	
-	   <div class="hd">
-	        <blc:related_products productId="${product.id}"/>   
-	       <ul class="clearfix pro-nav-bar pro-nav-8" id="J_navBar">
-                 <li class="J_item" th:each="relatedProduct,status : ${relatedProducts}" th:object="${relatedProduct.relatedProduct}" 
-                 th:if = "${status.index &lt; 7}" th:attr="data-pro = *{name}">
-                    <a th:href="@{*{url}}" th:utext="*{name}" />
-                 </li>
-	       </ul>
-	   </div>
-
-		<div class="bd" th:object="${product}">
-			<div class="pro-choose-main clearfix" id="J_chooseMain">
-				<div class="pro-view" th:if="*{media['primary']}">
-					<a
-						th:href="@{*{#strings.replace(media['primary'].url + '?browse', 'jpg?browse', 'jpg')}}"
-						class='jqzoom' id='zoom1' rel="gal1"> <img
-						blc:src="@{*{media['primary'].url}+ '?browse'}" alt=''
-						id="J_proImg" />
-					</a>
-				</div>
-				<div class="pro-info">
-					<div class="pro-title clearfix">
-						<h1>
-							<span class="pro-name J_proDesc" th:utext="*{name}" /> <span
-								class="pro-price J_proPrice"
-								th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-								<div blc:price="*{salePrice}" th:if="*{onSale}"
-									th:classappend="*{onSale}? 'sale'"></div>
-								<div blc:price="*{retailPrice}"
-									th:classappend="*{onSale}? 'has-sale'"></div>
-							</span> <span
-							    class="pro-price J_proPrice"
-								th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-								<div blc:price="*{defaultSku.salePrice}"
-									th:if="*{defaultSku.onSale}"
-									th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-								<div blc:price="*{defaultSku.retailPrice}"
-									th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
-							</span>
-						</h1>
-				</div>
-				<div th:substituteby="catalog/partials/productOptions" />
+	<div layout:fragment="content" th:object="${product}">
+		<div class="container buy-choose-box">
+			<div class="hd">
+				<blc:related_products productId="${product.id}" />
+				<ul class="clearfix pro-nav-bar pro-nav-8" id="J_navBar">
+					<li class="J_item"
+						th:each="relatedProduct,status : ${relatedProducts}"
+						th:object="${relatedProduct.relatedProduct}"
+						th:if="${status.index &lt; 7}" th:attr="data-pro = *{name}">
+						<a th:href="@{*{url}}" th:utext="*{name}" />
+					</li>
+				</ul>
 			</div>
 
+			<div class="bd">
+				<div class="pro-choose-main clearfix" id="J_chooseMain">
+					<div class="pro-view" th:if="*{media['primary']}">
+						<img
+							blc:src="@{*{media['primary'].url}+ '?browse'}" alt=''
+							id="J_proImg" />
+					</div>
+					<div class="pro-info">
+						<div class="pro-title clearfix">
+							<h1>
+								<span class="pro-name J_proDesc" th:utext="*{name}" /> <span
+									class="pro-price J_proPrice"
+									th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
+									<div blc:price="*{salePrice}" th:if="*{onSale}"></div>
+									<div blc:price="*{retailPrice}"></div>
+								</span> <span class="pro-price J_proPrice"
+									th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}"
+									blc:price="*{defaultSku.onSale} ? *{defaultSku.onSale} : *{defaultSku.retailPrice}">
+								</span>
+							</h1>
+						</div>
+						<div th:substituteby="catalog/partials/productOptions" />
+					</div>
+
+				</div>
+			</div>
 		</div>
-	</div>
+
+		<div class="main-pro-box" id="J_proDetailBox" th:utext="*{longDescription}" />
 	</div>
 </th:block>
