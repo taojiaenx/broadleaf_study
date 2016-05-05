@@ -21,31 +21,76 @@
 			<div class="bd">
 				<div class="pro-choose-main clearfix" id="J_chooseMain">
 					<div class="pro-view" th:if="*{media['primary']}">
-						<img
-							blc:src="@{*{media['primary'].url}+ '?browse'}" alt=''
+						<img blc:src="@{*{media['primary'].url}+ '?browse'}" alt=''
 							id="J_proImg" />
 					</div>
 					<div class="pro-info">
 						<div class="pro-title clearfix">
 							<h1>
 								<span class="pro-name J_proDesc" th:utext="*{name}" /> <span
-									class="pro-price J_proPrice"
-									th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-									<div blc:price="*{salePrice}" th:if="*{onSale}"></div>
-									<div blc:price="*{retailPrice}"></div>
-								</span> <span class="pro-price J_proPrice"
+									id="price"
+									th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}"
+									class="pro-price J_proPrice">
+									<div blc:price="*{salePrice}" th:if="*{onSale}"
+										th:classappend="*{onSale}? 'sale'"></div>
+									<div blc:price="*{retailPrice}"
+										th:classappend="*{onSale}? 'has-sale'"></div>
+								</span> <span id="price"
 									th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}"
-									blc:price="*{defaultSku.onSale} ? *{defaultSku.onSale} : *{defaultSku.retailPrice}">
+									class="pro-price J_proPrice">
+									<div style="display: inline-block"
+										blc:price="*{defaultSku.salePrice}"
+										th:if="*{defaultSku.onSale}"
+										th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+									<div style="display: inline-block"
+										blc:price="*{defaultSku.retailPrice}"
+										th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 								</span>
 							</h1>
 						</div>
 						<div th:substituteby="catalog/partials/productOptions" />
+						<div class="pro-choose-result" id="J_chooseResultInit">
+							<blc:form method="POST" th:action="@{/cart/add}">
+								<div class="product-option-nonjs"
+									th:each="productOption : *{productOptions}"
+									th:object="${productOption}">
+									<div class="form50">
+										<label th:utext="*{label}"></label> <select
+											th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+											<option th:each="optionValue : *{allowedValues}"
+												th:object="${optionValue}" th:utext="*{attributeValue}"></option>
+										</select>
+									</div>
+								</div>
+
+								<div id="inventory" th:if="${checkInventory}">
+									<b>Available inventory:</b> <span
+										th:utext="*{defaultSku.quantityAvailable == null ? '0' : defaultSku.quantityAvailable}" />
+									<div th:if="${!availableInventory}" class="out_of_stock">
+										<a disabled="disabled" class="big-button gray-button">Out
+											of Stock</a>
+									</div>
+								</div>
+
+								<div th:class="*{'productActions' + id}">
+									<div class="add_to_cart">
+										<input type="hidden" name="productId" th:value="*{id}" /> <input
+											type="hidden" name="quantity" value="1" /> <input
+											type="submit" class="addToCart big red"
+											th:value="#{product.buyNow}" />
+									</div>
+									<p class="error" th:if="${param.errorMessage}"
+										th:utext="${param.errorMessage[0]}"></p>
+								</div>
+							</blc:form>
+						</div>
 					</div>
 
 				</div>
 			</div>
 		</div>
 
-		<div class="main-pro-box" id="J_proDetailBox" th:utext="*{longDescription}" />
+		<div class="main-pro-box" id="J_proDetailBox"
+			th:utext="*{longDescription}" />
 	</div>
 </th:block>
