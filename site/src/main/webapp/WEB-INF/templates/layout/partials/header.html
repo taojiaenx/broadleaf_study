@@ -1,6 +1,15 @@
 <header>
     <div class="site-topbar">
         <div class="container">
+        <div class="topbar-cart" id="J_miniCartTrigger">
+            <a class="cart-mini" id="J_miniCartBtn" th:href="@{/cart}">
+                <i class="iconfont"></i>
+                购物车
+                <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
+                <span id="headerCartItemWordPlural_i18n" style="display: none;" th:utext="#{home.items}" />
+                <span class="cart-mini-num J_cartNum" th:text= "'&nbsp;(' + ${cart.itemCount}+')'" />
+            </a>
+            </div>
 
             <div class="topbar-info"  id="J_userInfo" th:if="${customer.anonymous}"  
             >
@@ -20,15 +29,6 @@
                 <a class="link" th:href="@{/logout}">
                     <span th:utext="#{home.logout}">Logout</span>
                 </a>
-            </div>
-            <div class="topbar-cart" id="J_miniCartTrigger">
-            <a class="cart-mini" id="J_miniCartBtn" th:href="@{/cart}">
-                <i class="iconfont"></i>
-                购物车
-                <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
-                <span id="headerCartItemWordPlural_i18n" style="display: none;" th:utext="#{home.items}" />
-                <span class="cart-mini-num J_cartNum" th:text= "'&nbsp;(' + ${cart.itemCount}+')'" />
-            </a>
             </div>
         </div>
 
