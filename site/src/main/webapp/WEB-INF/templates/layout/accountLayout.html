@@ -10,6 +10,7 @@
 <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf
 	Commerce Demo Store - Heat Clinic - Account</title>
 <th:block th:replace="/layout/partials/head"></th:block>
+<link rel="stylesheet" href="/css/main.min.css" />
 </head>
 
 <body th:class="${'locale-' + session.blLocale.localeCode}">
@@ -23,9 +24,13 @@
 		<div class="page-main">
 			<div class="container">
 
-				<h1>Account Options</h1>
+              <div class="span4">
+                 <div class="uc-box uc-sub-box">
+				   <h3>Account Options</h3>
 
 				<ul th:substituteby="account/partials/accountMenu" />
+				  </div> 
+				</div>
 
 				<div layout:fragment="content" />
 			</div>
