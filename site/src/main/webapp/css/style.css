@@ -23,15 +23,15 @@ select#state {
 
 .field100, .field66, .field50, .field35, .field30, .field25 {
     padding: 7px 10px;
-    background: #F5F4F1;
+    background: #fff;
     font-size: 14px;
     font-weight: bold;
     color: #666;
-    border: solid 1px #4D0206;
+    border: solid 1px #e8e8e8;
 }
 
 .fieldError {
-    border: solid 1px #FF0000;
+    border: solid 1px #ff6700;
 }
 
 .field100, .form100 label {
@@ -43,7 +43,8 @@ select#state {
 }
 
 .field50, .form50 label {
-    width: 260px;
+    width: 358px;
+    height: 40px;
 }
 
 .field35, .form35 label {
@@ -73,7 +74,7 @@ select#state {
 }
 
 .form50 {
-    width: 280px;
+    width: 358px;
     margin-bottom: 5px;
     float: left;
     display: inline;
@@ -91,6 +92,8 @@ select#state {
     margin-bottom: 5px;
     float: left;
     display: inline;
+    margin-left: 24px;
+    margin-right: 10px;
 }
 
 .form25 {
@@ -111,7 +114,7 @@ select#state {
 .group { zoom:1; /* For IE 6/7 (trigger hasLayout) */ }
 
 span.error,span.productOptionsSpan, div.error, p.error {
-    color: #E40037;
+    color: #ff6700;
     font-weight: bold;
     display: inline-block;
 }
@@ -505,7 +508,7 @@ nav ul li:hover .sub-menu {
 
 #account {
     margin-top: 30px;
-    font-size: 12px;
+    font-size: 14px;
     display: block;
 }
 
@@ -517,9 +520,9 @@ nav ul li:hover .sub-menu {
 }
 
 #account #register, #account #login, #account #forgotPassword, #account #resetPassword, #contactus {
-    width: 282px;
+    width: 358px;
     margin: 10px auto;
-    padding: 20px;
+ /*   padding: 20px; */
     /* background: url('../img/sidebarbg.jpg') repeat; */
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -527,7 +530,8 @@ nav ul li:hover .sub-menu {
 }
 
 .manage-account-container {
-    margin: 40px 0 0 60px;
+/*    margin: 40px 0 0 60px;
+ background-color: #f5f5f5; */
 }
 
 .manage-account-container h1 {
@@ -550,7 +554,10 @@ nav ul li:hover .sub-menu {
     padding: 0;
     width: 200px;
 }
-
+.account_menu{
+	margin-top:20px;
+	margin-left:8px;
+}
 .success {
     background: #E6EFC2;
     border: 2px solid #C6D880;
@@ -579,9 +586,8 @@ nav ul li:hover .sub-menu {
 }
 
 .manage-account-form-wrapper h2 {
-    background-color: #342020;
-    color: #fff;
-    font-size: 14px;
+    color: #333;
+    font-size: 18px;
     padding: 5px 10px;
 }
 
@@ -1797,9 +1803,6 @@ input[type="submit"].small, a.small-button,
     -o-transition: background-color 0.2s ease-in;
     transition: background-color 0.2s ease-in;
     border: 0;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
     text-transform: uppercase;
     text-decoration: none;
 }
@@ -1830,7 +1833,7 @@ input[type="submit"].small, a.small-button {
 
 input[type="submit"].red, a.red-button, a.addToCart, .addToCart {
     color: white;
-    background-color: #E40037;
+    background-color: #ff6700;
 }
 
 input[type="submit"].dark, a.dark-button, #featured_products .addToCart {
@@ -1855,7 +1858,7 @@ input[type="submit"].small:hover, a.small-button:hover,
 }
 
 input[type="submit"].red:hover, a.red-button:hover, .addToCart:hover {
-    background-color: #a50832;
+    background-color: #ff936a;
 }
 
 input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover {
