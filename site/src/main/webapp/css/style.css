@@ -626,7 +626,9 @@ li.promotion,  ul.promotion{
 	font-family: 'Georgia', serif;
     font-size: 12px;
 }
-
+.order-info{
+	margin:0 0 0 10px;
+}
 #order-history .order-info-row {
     padding: 8px 0;
 }
@@ -790,9 +792,9 @@ li.promotion,  ul.promotion{
 #cart {
     width: 920px;
     padding: 10px;
-    margin: 10px 20px;
+   /* margin: 10px 20px; */
     display: block;
-    float: left;
+    /* float: left; */
 }
 
 .cart_modal {
@@ -804,10 +806,12 @@ li.promotion,  ul.promotion{
     margin: 10px 0;
     padding: 10px;
     font: 14px/18px 'Oxygen', Helvetica, sans-serif;
-    background-color: #3e0000;
-    color: #fff;
+    background-color: #fff;
+    color: #333;
     float: left;
     display: block;
+    border-bottom: 1px solid #e0e0e0;
+    font-size:18px;
 }
 
 .cart_title a {margin-left: 6px;}

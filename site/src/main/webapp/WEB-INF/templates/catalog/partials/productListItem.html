@@ -31,14 +31,14 @@
 	</ul>
 </div>
 <div class="actions clearfix">
-	<div class="btn-buy J_buyGoods">
+	<div class="btn-buy J_buyGoods ">
 		<blc:form method="POST" th:action="@{/cart/add}">
 			<span>加入购物车</span>
 			<input type="hidden" name="productId" th:value="*{id}" />
 			<input type="hidden" name="quantity" value="1" />
 			<input type="hidden" name="hasProductOptions"
 				th:value="*{!#lists.isEmpty(productOptions)}" />
-			<input type="submit" class="iconfont"
+			<input type="submit" class="iconfont modalcart"
 				style="border: none; background: white" value="" />
 		</blc:form>
 	</div>
