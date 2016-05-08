@@ -2,7 +2,7 @@ $(function(){
     // Set up basic options for the cart modal
     var modalCartOptions = {
         minWidth    : 940,
-        maxWidth    : 940,
+        maxWidth    : 1230,
         minHeight   : 355,
         maxHeight   : 570,
         position    : ['30px']
