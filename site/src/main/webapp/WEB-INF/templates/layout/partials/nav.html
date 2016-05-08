@@ -20,7 +20,7 @@
                 <div class="container">
                 <blc:products_in_menu th:attr="CategoryId=${menuItem.categoryId}"/>
                 <ul class="children-list clearfix">     
-                    <li th:each="product,status : ${menuProducts}" th:class="'0' == ${status.index} ? first"
+                    <li th:each="product,status : ${menuProducts}" th:class="0 == ${status.index} ? first"
                     th:object="${product}" th:include="catalog/partials/productItemInMenu"/>
                 </ul>
                 </div>

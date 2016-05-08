@@ -1,18 +1,39 @@
 <th:block layout:decorator="layout/fullPageNoNavLayout">
 	<head>
-	<link rel="stylesheet" href="/css/cart.min.css" />
+<link rel="stylesheet" href="/css/cart.min.css" />
 <title>Cart</title>
 	</head>
 
 
-	<div  class="page-main" layout:fragment="content"
-		th:fragment="ajax">
+	<div class="page-main" layout:fragment="content" th:fragment="ajax">
 		<div class="container">
 			<div id="J_cartBox">
 				<table th:substituteby="cart/partials/cartProductsTable"></table>
 
-				<div class="group">
-					<h3>
+				<div class="raise-buy-box" id="J_raiseBuyBox"></div>
+				<div class="cart-bar clearfix" id="J_cartBar">
+					<div class="section-left">
+						<a th:href="@{/}" target="_top"
+							th:utext="#{cart.continueShopping}"
+							class="back-shopping J_goShoping" />
+					</div>
+					<span class="total-price"> <span
+						th:text="#{cart.currentSubtotal} + '(' +#{cart.subtotalDisclaimer}+')'+'：'" />
+						<em id="J_cartTotalPrice" th:unless="${cart.subTotal?.zero}"
+						blc:price="${cart.subTotal?.subtract(cart.orderAdjustmentsValue)}" />
+						<em id="J_cartTotalPrice"
+						th:unless="${cart.orderAdjustmentsValue.zero}"> <span
+							th:utext="#{cart.orderDiscount}">Order Discount</span>: <span
+							blc:price="${cart.orderAdjustmentsValue}" />
+					</em>
+
+					</span>
+					<a th:href="@{/checkout}" target="_top"
+							class="btn btn-a btn btn-primary"
+							id="J_goCheckout" th:utext="#{cart.checkout}">
+						Checkout
+					</a>
+					<!--  	<h3>
 						<span th:utext="#{cart.currentSubtotal}">Your Current
 							Subtotal</span>
 					</h3>
@@ -26,15 +47,8 @@
 					<p>
 						<span th:utext="#{cart.subtotalDisclaimer}">Subtotal does
 							not yet include applicable tax or shipping and handling charges</span>.
-					</p>
-					<div id="checkout">
-						<a th:href="@{/checkout}" target="_top"
-							class="big-button red-button"> <span
-							th:utext="#{cart.checkout}">Checkout</span>
-						</a>
-					</div>
-					<p>
-					<form blc:null_payment_hosted_action="${paymentRequestDTO}"
+					</p> -->
+					<!--	<form blc:null_payment_hosted_action="${paymentRequestDTO}"
 						complete_checkout="${false}" method="POST">
 						<input type="hidden" name="TRANSACTION_AMT"
 							th:value="${cart.total}" /> <input type="hidden" name="ORDER_ID"
@@ -52,16 +66,14 @@
 							name="COMPLETE_CHECKOUT_ON_CALLBACK" value="false" /> <input
 							type="image" blc:src="@{/img/alipay_logo.png}" align="left"
 							style="margin-right: 7px;" alt="Submit Form" />
-					</form>
-					<div class="clearfix"></div>
-					<a th:href="@{/}" target="_top">&laquo; <span
-						th:utext="#{cart.continueShopping}">Continue Shopping</span></a>
-					</p>
+					</form> -->
+					<!--  <div class="clearfix"></div>
+					<a th:href="@{/}" target="_top" th:utext="#{cart.continueShopping}" class= "back-shopping J_goShoping" /> -->
 				</div>
 				<p class="error" th:if="${param.errorMessage}"
 					th:utext="${param.errorMessage[0]}"></p>
 				<p class="error" th:if="${errorMessage}" th:utext="${errorMessage}"></p>
-				<blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
+				<!--<blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
 					<label for="promoCode"><span th:utext="#{cart.promoCode}">Promo
 							Code</span>:</label>
 					<input id="promoCode" name="promoCode" type="text"
@@ -78,7 +90,7 @@
 						</div>
 					</div>
 					<div id="cart_promo_error" style="display: none;"></div>
-				</blc:form>
+				</blc:form> -->
 
 				<div id="blc-extra-data" class="hidden" th:utext="${blcextradata}"
 					th:if="${!#strings.isEmpty(blcextradata)}"></div>

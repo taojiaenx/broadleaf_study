@@ -1,40 +1,88 @@
-<div id="account" layout:decorator="layout/fullPageLayout" layout:fragment="content">
-    <head>
-        <title>Login</title>
-    </head>
-    
-    <div id="login">
-        <h3><span th:utext="#{login.loginToAccount}">Login to Your Account</span></h3>
-        <p><span th:utext="#{login.alreadyMember}">Already a member? Sign in using the form below</span>.</p>
-        
-        <span class="error" th:if="${param.error}">
-            <p><span th:utext="#{login.noMatchTryAgain}">The e-mail address and/or password entered do not match our records.  Please try again</span></p>
-        </span>
+<div id="account" layout:decorator="layout/fullPageLayout"
+	layout:fragment="content" class="wrapper">
+	<head>
+<title>Login</title>
+	</head>
 
-        <div class="clearfix">
-            <blc:form th:action="@{/login_post.htm}" method="post">
-                <input type="hidden" name="successUrl" th:if="${successUrl}" th:value="${successUrl}"/>
-                
-                <div class="form50">
-                    <label for="j_username"><span th:utext="#{login.email}">Email</span></label>
-                    <input type="email" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
-                </div>
-                
-                <div class="form50">
-                    <label for="j_password"><span th:utext="#{login.password}">Password</span></label>
-                    <input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
-                </div>
-                
-                <div class="login_register">
-                    <input class="login_button big red" type="submit" th:value="#{login.login}"/>
-                </div>
-                
-                <div class="login_register_alt_links">
-                    <a class="account" th:href="@{/register}"><span th:utext="#{login.register}">Register</span></a>
-                    <br/>
-                    <a class="account" th:href="@{/login/forgotPassword}"><span th:utext="#{login.forgotPassword}">Forgot Password</span></a>
-                </div>
-            </blc:form>
-        </div>
-    </div>
+	<div id="login">
+		<h3>
+			<span th:utext="#{login.loginToAccount}">Login to Your Account</span>
+		</h3>
+		<p>
+			<span th:utext="#{login.alreadyMember}">Already a member? Sign
+				in using the form below</span>.
+		</p>
+
+		<span class="error" th:if="${param.error}">
+			<p>
+				<span th:utext="#{login.noMatchTryAgain}">The e-mail address
+					and/or password entered do not match our records. Please try again</span>
+			</p>
+		</span>
+
+		<div class="clearfix">
+			<blc:form th:action="@{/login_post.htm}" method="post">
+				<input type="hidden" name="successUrl" th:if="${successUrl}"
+					th:value="${successUrl}" />
+
+				<div class="form50 labelbox login_user c_b">
+					<input type="email" name="j_username" class="item_account"
+						th:class="${param.error} ? 'field50 fieldError'"
+						th:attr="placeholder=#{login.email}" />
+				</div>
+
+				<div class="form50 labelbox pwd_panel c_b">
+					<input type="password" name="j_password"
+						th:class="${param.error} ? 'field50 fieldError'" 
+						th:attr="placeholder=#{login.password}"/>
+				</div>
+
+				<div class="btns_bg">
+					<input class="btnadpt btn_orange" type="submit"
+						th:value="#{login.login}" />
+				</div>
+
+				<div class="n_links_area" id="custom_display_64">
+					<a class="account" th:href="@{/register}"><span
+						th:utext="#{login.register}">Register</span></a> 
+                        <span>|</span> <a
+						class="account" th:href="@{/login/forgotPassword}"><span
+						th:utext="#{login.forgotPassword}">Forgot Password</span></a>
+				</div>
+			</blc:form>
+		</div>
+	</div>
+	<style>
+.labelbox input {
+	width: 100%;
+	height: 22px;
+	line-height: 22px;
+	padding: 13px 16px 13px 14px;
+	display: block;
+}
+.btns_bg {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+.btn_orange {
+    background-color: #ef5b00;
+}
+.btnadpt {
+    border:none;
+    width: 392px;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+}
+.n_links_area {
+    padding-top: 30px;
+    text-align: center;
+    color: #e0e0e0;
+}
+</style>
 </div>

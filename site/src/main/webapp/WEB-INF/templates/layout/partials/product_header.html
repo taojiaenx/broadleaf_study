@@ -1,0 +1,62 @@
+<header>
+    <div class="site-header site-mini-header">
+        <div class="container">
+        <div class="topbar-cart" id="J_miniCartTrigger">
+            <a class="cart-mini" id="J_miniCartBtn" th:href="@{/cart}">
+                <i class="iconfont"></i>
+                购物车
+                <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
+                <span id="headerCartItemWordPlural_i18n" style="display: none;" th:utext="#{home.items}" />
+                <span class="cart-mini-num J_cartNum" th:text= "'&nbsp;(' + ${cart.itemCount}+')'" />
+            </a>
+            </div>
+
+            <div class="topbar-info"  id="J_userInfo" th:if="${customer.anonymous}"  
+            >
+
+                <a class="link" th:href="@{/login}">
+                    <span th:utext="#{home.login}">Login</span>
+                </a>
+                <span class="sep">|</span>
+                <a class="link" th:href="@{/register}">
+                    <span th:utext="#{home.register}">Register</span>
+                </a>
+            </div>
+            <div class="topbar-info"  id="J_userInfo"
+            th:unless="${customer.anonymous}">
+                <span><span th:utext="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:utext="${customer.firstName}"></a></span>
+                <span class="sep">|</span> 
+                <a class="link" th:href="@{/logout}">
+                    <span th:utext="#{home.logout}">Logout</span>
+                </a>
+            </div>
+        </div>
+
+       <!--  <div id="languages">
+            <span id="selectedLocale" th:utext="${session.blLocale.localeCode}" style="display: none" />
+
+            <a href="javascript:;" onclick="BLC.addUrlParam(document.location.search, 'blLocaleCode', 'en_US')">
+                <img id="en_US" src="img/flags/United-States.png" blc:src="@{/img/flags/United-States.png}" alt="United States" title="English" />
+            </a>
+
+            <a href="javascript:;" onclick="BLC.addUrlParam(document.location.search, 'blLocaleCode', 'en_GB')">
+                <img id="en_GB" src="img/flags/United-Kingdom.png" blc:src="@{/img/flags/United-Kingdom.png}" alt="United Kingdom" title="English (UK)"/>
+            </a>
+
+            <a  href="javascript:;" onclick="BLC.addUrlParam(document.location.search, 'blLocaleCode', 'es_MX')">
+                <img id="es_MX" src="img/flags/Mexico.png" blc:src="@{/img/flags/Mexico.png}" alt="Mexico" title="Spanish (Mexico)"/>
+            </a>
+
+            <a href="javascript:;" onclick="BLC.addUrlParam(document.location.search, 'blLocaleCode', 'es_ES')">
+                <img id="es_ES" src="img/flags/Mexico.png" blc:src="@{/img/flags/Spain.png}" alt="Spain" title="Spanish (Spain)"/>
+            </a>
+            <a href="javascript:;" onclick="BLC.addUrlParam(document.location.search, 'blLocaleCode', 'fr_FR')">
+                <img id="fr_FR" src="img/flags/Mexico.png" blc:src="@{/img/flags/France.png}" alt="France" title="French (France)" />
+            </a>
+
+        </div>-->
+
+   <!--  <div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>-->
+
+    </div>
+</header>

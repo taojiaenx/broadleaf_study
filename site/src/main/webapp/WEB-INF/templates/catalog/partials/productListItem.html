@@ -1,15 +1,48 @@
 <div class="figure figure-img">
-<a th:href="@{*{url}}">
-<img th:if="*{media['primary']}" blc:src="@{*{media['primary'].url} + '?browse'}" th:alt="*{name}" 
-width="200" height="200"/>
-</a>
+	<a th:href="@{*{url}}"> <img th:if="*{media['primary']}"
+		blc:src="@{*{media['primary'].url} + '?browse'}" th:alt="*{name}"
+		width="200" height="200" />
+	</a>
 </div>
-<p class="desc" th:utext="*{description}"/>
+<p class="desc" th:utext="*{manufacturer}" />
 <h2 class="title">
- <a th:href="@{*{url}}" th:utext="*{name}" />
+	<a th:href="@{*{url}}" th:utext="*{name}" />
 </h2>
-<p class="price" th:utext="*{salePrice}"/>
+<p class="price" blc:price="*{salePrice}" />
+<div class="thumbs">
+	<ul class="thumb-list">
+		<li><a th:if="*{media['primary']}" href="javascript:;"
+			class="zoomThumbActive"
+			th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}+'?browse'}__'', largeimage: ''__@{*{media['primary'].url}}__'' }'}"
+			th:attr="data-tags=*{media['primary'].tags}"> <img
+				blc:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
+		</a>
+			<p th:if="*{#maps.size(media) > 1}" class="thumbs_nav">
+				Swipe to see more... (<span
+					th:utext="'1 of ' + *{#maps.size(media) > 3 ? 3 : #maps.size(media)}"></span>)
+			</p></li>
 
+		<li  th:each="media, iterStat : *{media}"
+			th:unless="${media.key == 'primary'}"><a href="javascript:;"
+			th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}+'?browse'}__'', largeimage: ''__@{${media.value.url}}__'' }'}"
+			th:attr="data-tags=${media.value.tags}"> <img
+				blc:src="@{${media.value.url}}" alt="Bottle Closeup" />
+		</a></li>
+	</ul>
+</div>
+<div class="actions clearfix">
+	<div class="btn-buy J_buyGoods">
+		<blc:form method="POST" th:action="@{/cart/add}">
+			<span>加入购物车</span>
+			<input type="hidden" name="productId" th:value="*{id}" />
+			<input type="hidden" name="quantity" value="1" />
+			<input type="hidden" name="hasProductOptions"
+				th:value="*{!#lists.isEmpty(productOptions)}" />
+			<input type="submit" class="iconfont"
+				style="border: none; background: white" value="" />
+		</blc:form>
+	</div>
+</div>
 
 <!--  <div th:if="*{featuredProduct}" class="new_badge">New!</div>
 
@@ -29,7 +62,7 @@ width="200" height="200"/>
 
 <div class="content">
     <div class="title" th:utext="*{name}"></div>-->
-   <!-- <p th:utext="*{longDescription}"></p>-->
+<!-- <p th:utext="*{longDescription}"></p>-->
 <!--  </div>
 
 <div th:class="*{'productActions productActions' + id}"

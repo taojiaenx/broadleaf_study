@@ -11,29 +11,29 @@
             <input type="hidden" th:field="*{redirectUrl}" />
                 
             <div class="form50">
-                <label for="customer.emailAddress"><span th:utext="#{register.email}">Email</span></label>
                 <span class="error" th:if="${#fields.hasErrors('customer.emailAddress')}" th:errors="*{customer.emailAddress}"></span>
-                <input type="email" th:field="*{customer.emailAddress}" class="field50" th:classappend="${#fields.hasErrors('customer.emailAddress')}? 'fieldError'" />
+                <input type="email" th:field="*{customer.emailAddress}" class="field50" th:classappend="${#fields.hasErrors('customer.emailAddress')}? 'fieldError'"
+                th:attr="placeholder=#{register.email}" />
             </div>
             <div class="form50">
-                <label for="customer.firstName"><span th:utext="#{register.firstName}">First Name</span></label>
                 <span class="error" th:if="${#fields.hasErrors('customer.firstName')}" th:errors="*{customer.firstName}"></span>
-                <input type="text" th:field="*{customer.firstName}" class="field50" th:classappend="${#fields.hasErrors('customer.firstName')}? 'fieldError'" />
+                <input type="text" th:field="*{customer.firstName}" class="field50" th:classappend="${#fields.hasErrors('customer.firstName')}? 'fieldError'" 
+                th:attr="placeholder=#{register.firstName}" />
             </div>
             <div class="form50">
-                <label for="customer.lastName"><span th:utext="#{register.lastName}">Last Name</span></label>
                 <span class="error" th:if="${#fields.hasErrors('customer.lastName')}" th:errors="*{customer.lastName}"></span>
-                <input type="text" th:field="*{customer.lastName}" class="field50" th:classappend="${#fields.hasErrors('customer.lastName')}? 'fieldError'" />
+                <input type="text" th:field="*{customer.lastName}" class="field50" th:classappend="${#fields.hasErrors('customer.lastName')}? 'fieldError'" 
+                th:attr="placeholder=#{register.firstName}"/>
             </div>          
             <div class="form50">
-                <label for="password"><span th:utext="#{register.password}">Password</span></label>
                 <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-                <input type="password" th:field="*{password}" class="field50" th:classappend="${#fields.hasErrors('password')}? 'fieldError'" />
+                <input type="password" th:field="*{password}" class="field50" th:classappend="${#fields.hasErrors('password')}? 'fieldError'" 
+                th:attr="placeholder=#{register.password}"/>
             </div>
             <div class="form50">
-                <label for="confirmPassword"><span th:utext="#{register.confirmPassword}">Confirm Password</span></label>
                 <span class="error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
-                <input type="password" th:field="*{passwordConfirm}" class="field50" th:classappend="${#fields.hasErrors('passwordConfirm')}? 'fieldError'" />
+                <input type="password" th:field="*{passwordConfirm}" class="field50" th:classappend="${#fields.hasErrors('passwordConfirm')}? 'fieldError'" 
+                th:attr="placeholder=#{register.confirmPassword}"/>
             </div>          
             
             <div class="login_register">
