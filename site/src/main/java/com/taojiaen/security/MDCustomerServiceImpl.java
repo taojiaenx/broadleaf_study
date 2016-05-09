@@ -18,8 +18,8 @@ public class MDCustomerServiceImpl extends CustomerServiceImpl {
 
 	@Override
 	public Customer registerCustomer(Customer customer, String password, String passwordConfirm) {
-		password = encoder.encodePassword(password, customer.getUsername());
-		passwordConfirm = encoder.encodePassword(passwordConfirm, customer.getUsername());
+		password = encoder.encodePassword(password, customer.getId());
+		passwordConfirm = encoder.encodePassword(passwordConfirm, customer.getId());
 		return super.registerCustomer(customer, password, passwordConfirm);
 	}
 
@@ -27,7 +27,7 @@ public class MDCustomerServiceImpl extends CustomerServiceImpl {
 	@Transactional(TransactionUtils.DEFAULT_TRANSACTION_MANAGER)
 	public Customer changePassword(PasswordChange passwordChange) {
 		Customer customer = readCustomerByUsername(passwordChange.getUsername());
-		customer.setUnencodedPassword(encoder.encodePassword(passwordChange.getNewPassword(), customer.getUsername()));
+		customer.setUnencodedPassword(encoder.encodePassword(passwordChange.getNewPassword(), customer.getId()));
 		customer.setPasswordChangeRequired(passwordChange.getPasswordChangeRequired());
 		customer = saveCustomer(customer);
 

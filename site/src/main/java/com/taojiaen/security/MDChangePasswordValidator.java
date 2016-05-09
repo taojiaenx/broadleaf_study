@@ -16,10 +16,9 @@ public class MDChangePasswordValidator extends ChangePasswordValidator{
 	
 	@Override
 	public void validate(PasswordChange passwordChange, Errors errors) {
-		MenuItem menuItem = null;
 
         String currentPassword = encoder.encodePassword(passwordChange.getCurrentPassword(),
-        		CustomerState.getCustomer().getUsername());
+        		CustomerState.getCustomer().getId());
         String password = passwordChange.getNewPassword();
         String passwordConfirm = passwordChange.getNewPasswordConfirm();
 
