@@ -10,10 +10,11 @@
         <blc:form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
             <input type="hidden" th:field="*{redirectUrl}" />
             <div class="form50">
+                <span class="error" th:if="${#fields.hasErrors('customer.username')}" th:errors="*{customer.username}"></span>
                 <input type="text" th:field="*{customer.username}" class="field50" th:classappend="${#fields.hasErrors('customer.username')}? 'fieldError'"
                 th:attr="placeholder=#{register.phoneNumber}" />
             </div>
-            <div class="form50">
+         <!--     <div class="form50">
                 <span class="error" th:if="${#fields.hasErrors('customer.emailAddress')}" th:errors="*{customer.emailAddress}"></span>
                 <input type="email" th:field="*{customer.emailAddress}" class="field50" th:classappend="${#fields.hasErrors('customer.emailAddress')}? 'fieldError'"
                 th:attr="placeholder=#{register.email}" />
@@ -27,7 +28,7 @@
                 <span class="error" th:if="${#fields.hasErrors('customer.lastName')}" th:errors="*{customer.lastName}"></span>
                 <input type="text" th:field="*{customer.lastName}" class="field50" th:classappend="${#fields.hasErrors('customer.lastName')}? 'fieldError'" 
                 th:attr="placeholder=#{register.firstName}"/>
-            </div>          
+            </div>          -->
             <div class="form50">
                 <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                 <input type="password" th:field="*{password}" class="field50" th:classappend="${#fields.hasErrors('password')}? 'fieldError'" 

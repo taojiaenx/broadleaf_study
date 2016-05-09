@@ -53,10 +53,11 @@ public class RegisterController extends BroadleafRegisterController {
             @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors)
 			throws ServiceException, PricingException {
 		String unencodedPassword = registerCustomerForm.getPassword();
+		Customer customer = registerCustomerForm.getCustomer();
 		if (useEmailForLogin) {
-			Customer customer = registerCustomerForm.getCustomer();
 			customer.setUsername(customer.getEmailAddress());
 		}
+		customer.setFirstName(customer.getUsername());
 		
 
 
