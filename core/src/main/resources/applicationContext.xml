@@ -86,6 +86,9 @@
 		<constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
 	</bean>
 	
+	
 	<!-- catalog修改 -->
 	<bean id="blCatalogService" class="com.taojiaen.sample.slor.LLCatalogServiceImpl" />
+	<!-- 价格单位 -->
+	<bean id="blPriceTextDisplayProcessor" class="com.taojiaen.product.processor.ExtPriceTextProcessor" />
 </beans>

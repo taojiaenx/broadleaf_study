@@ -43,6 +43,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UpdateAccountController extends BroadleafUpdateAccountController {
 	@Resource(name="blUserDetailsService")
     private UserDetailsService userDetailsService;
+	
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewUpdateAccount(HttpServletRequest request, Model model, @ModelAttribute("updateAccountForm") MyUpdateAccessForm form) {

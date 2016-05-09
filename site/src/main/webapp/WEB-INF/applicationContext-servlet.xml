@@ -90,5 +90,9 @@
     
     <!-- This validator will additionally require state on shipping addresses -->
     <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
+    <!-- 用户注册验证类修改 -->
+    <bean id="blRegisterCustomerValidator" class="com.taojiaen.security.MyRegisterCustomerValidator" />
+    <!-- 用户信息修改验证累修改 -->
+    <bean id="blUpdateAccountValidator" class="org.taojiaen.controller.account.validator.MyUpdateAccountValidator" />
     
 </beans>
