@@ -9,7 +9,10 @@
 
         <blc:form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
             <input type="hidden" th:field="*{redirectUrl}" />
-                
+            <div class="form50">
+                <input type="text" th:field="*{customer.username}" class="field50" th:classappend="${#fields.hasErrors('customer.username')}? 'fieldError'"
+                th:attr="placeholder=#{register.phoneNumber}" />
+            </div>
             <div class="form50">
                 <span class="error" th:if="${#fields.hasErrors('customer.emailAddress')}" th:errors="*{customer.emailAddress}"></span>
                 <input type="email" th:field="*{customer.emailAddress}" class="field50" th:classappend="${#fields.hasErrors('customer.emailAddress')}? 'fieldError'"

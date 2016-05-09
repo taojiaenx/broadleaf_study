@@ -1,4 +1,6 @@
 package com.taojiaen.security;
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.broadleafcommerce.common.security.util.PasswordChange;
@@ -17,7 +19,24 @@ public class MDCustomerServiceImpl extends CustomerServiceImpl{
     public Customer registerCustomer(Customer customer, String password, String passwordConfirm) {
        password =  encoder.encodePassword(password, customer.getUsername());
        passwordConfirm = encoder.encodePassword(passwordConfirm, customer.getUsername());
-       return super.registerCustomer(customer, password, passwordConfirm);
+       customer.setRegistered(true);
+
+       // When unencodedPassword is set the save() will encode it
+       if (customer.getId() == null) {
+           customer.setId(findNextCustomerId());
+       }
+       customer.setUnencodedPassword(password);
+       Customer retCustomer = saveCustomer(customer);
+       createRegisteredCustomerRoles(retCustomer);
+       
+       HashMap<String, Object> vars = new HashMap<String, Object>();
+       vars.put("customer", retCustomer);
+       /**
+        * 不再发送email
+        */
+     //  emailService.sendTemplateEmail(customer.getEmailAddress(), getRegistrationEmailInfo(), vars);        
+       notifyPostRegisterListeners(retCustomer);
+       return retCustomer;
     }
     @Override
     @Transactional(TransactionUtils.DEFAULT_TRANSACTION_MANAGER)
