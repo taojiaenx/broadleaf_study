@@ -91,4 +91,8 @@
 	<bean id="blCatalogService" class="com.taojiaen.sample.slor.LLCatalogServiceImpl" />
 	<!-- 价格单位 -->
 	<bean id="blPriceTextDisplayProcessor" class="com.taojiaen.product.processor.ExtPriceTextProcessor" />
+	<!-- 车牌管理 -->
+	<bean id="tjeCarplateService"
+		class="com.taojiaen.profile.core.service.CarplateServiceImpl">
+	</bean>
 </beans>
