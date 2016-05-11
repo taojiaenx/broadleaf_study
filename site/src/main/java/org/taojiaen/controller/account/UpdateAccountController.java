@@ -21,6 +21,7 @@ import org.broadleafcommerce.core.web.controller.account.BroadleafUpdateAccountC
 import org.broadleafcommerce.core.web.controller.account.UpdateAccountForm;
 import org.broadleafcommerce.profile.core.domain.Customer;
 import org.broadleafcommerce.profile.web.core.CustomerState;
+import org.broadleafcommerce.profile.web.core.form.RegisterCustomerForm;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,11 +30,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.taojiaen.profile.core.service.Carplate;
+import com.taojiaen.profile.core.service.CarplateSerivce;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +48,8 @@ import javax.servlet.http.HttpServletRequest;
 public class UpdateAccountController extends BroadleafUpdateAccountController {
 	@Resource(name="blUserDetailsService")
     private UserDetailsService userDetailsService;
+	@Resource(name = "tjeCarplateService")
+	protected CarplateSerivce carplateService;
 	
 
     @RequestMapping(method = RequestMethod.GET)
@@ -52,6 +59,13 @@ public class UpdateAccountController extends BroadleafUpdateAccountController {
         form.setFirstName(customer.getFirstName());
         form.setLastName(customer.getLastName());
         form.setPhoneNumber(customer.getUsername());
+        Carplate carplate = carplateService.getCarplate(customer);
+        if (carplate != null) {
+        	form.setCarplateProvince(carplate.getCarplateProvince());
+        	form.setCarplateCity(carplate.getCarplateCity());
+        	form.setCarplateNumber(carplate.getCarplateNumber());
+        }
+        
         return getUpdateAccountView();
     }
 
@@ -73,6 +87,13 @@ public class UpdateAccountController extends BroadleafUpdateAccountController {
         customer.setEmailAddress(form.getEmailAddress());
         customer.setFirstName(form.getFirstName());
         customer.setLastName(form.getLastName());
+        if (!StringUtils.hasLength((form.getCarplateNumber()))) {
+        	form.setCarplateNumber("");
+        }
+        if (StringUtils.hasText(form.getCarplateProvince())
+        		&& StringUtils.hasText(form.getCarplateCity())) {
+        carplateService.putCarplate(customer, new Carplate(form.getCarplateProvince(), form.getCarplateCity(), form.getCarplateNumber()));
+        }
         
        // if (useEmailForLogin) {
             customer.setUsername(form.getPhoneNumber());
@@ -90,6 +111,5 @@ public class UpdateAccountController extends BroadleafUpdateAccountController {
         redirectAttributes.addFlashAttribute("successMessage", getAccountUpdatedMessage());
         return getAccountRedirectView();
     }
-
 
 }

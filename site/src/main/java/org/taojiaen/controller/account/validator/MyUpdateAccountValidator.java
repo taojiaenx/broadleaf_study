@@ -12,6 +12,7 @@ import org.taojiaen.controller.account.MyUpdateAccessForm;
 
 public class MyUpdateAccountValidator extends UpdateAccountValidator {
 	protected final  String validatePhoneExpression = "^(0|86|17951)?[0-9]{11}$";
+	protected final String validateCarplateExpression = "[0-9A-Za-z]{5,8}";
 
 	@Override
 	public void validate(UpdateAccountForm form, Errors errors) {
@@ -40,7 +41,7 @@ public class MyUpdateAccountValidator extends UpdateAccountValidator {
 
 			if (form instanceof MyUpdateAccessForm) {
 				if (!((MyUpdateAccessForm) form).getPhoneNumber().matches(getValidatePhoneExpression())) {
-	                errors.rejectValue("phoneNumber", "username.phone.invalid", null, null);
+	                errors.rejectValue("phoneNumber", "username.phone.invalid");
 	            } 
 				
 				
@@ -52,6 +53,13 @@ public class MyUpdateAccountValidator extends UpdateAccountValidator {
 					// current customer
 					errors.rejectValue("phoneNumber", "username.phone.used");
 				}
+				
+				if (StringUtils.hasText(((MyUpdateAccessForm) form).getCarplateNumber())
+						&& !((MyUpdateAccessForm) form).getCarplateNumber().matches(getValidateCarplateExpression())) {
+					errors.rejectValue("carplateNumber", "carplate.invalid");
+				}
+				
+				
 			}
 
 		}
@@ -60,4 +68,8 @@ public class MyUpdateAccountValidator extends UpdateAccountValidator {
 	private String getValidatePhoneExpression() {
 		return validatePhoneExpression;
 	}
+	public String getValidateCarplateExpression() {
+		return validateCarplateExpression;
+	}
+	
 }

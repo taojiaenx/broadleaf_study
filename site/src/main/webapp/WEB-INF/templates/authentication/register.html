@@ -29,6 +29,7 @@
                 <input type="text" th:field="*{customer.lastName}" class="field50" th:classappend="${#fields.hasErrors('customer.lastName')}? 'fieldError'" 
                 th:attr="placeholder=#{register.firstName}"/>
             </div>          -->
+             <div  th:substituteby="account/partials/carplateForm"/> 
             <div class="form50">
                 <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                 <input type="password" th:field="*{password}" class="field50" th:classappend="${#fields.hasErrors('password')}? 'fieldError'" 
@@ -38,7 +39,7 @@
                 <span class="error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
                 <input type="password" th:field="*{passwordConfirm}" class="field50" th:classappend="${#fields.hasErrors('passwordConfirm')}? 'fieldError'" 
                 th:attr="placeholder=#{register.confirmPassword}"/>
-            </div>          
+            </div>    
             
             <div class="login_register">
                 <input class="register_button big red" type="submit" th:value="#{register.register}"/>

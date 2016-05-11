@@ -1,0 +1,23 @@
+<div class="form50">
+        <span th:utext="#{register.carplate}" style="display:block">carplate</span>
+        <span style="display:block" class="error" th:if="${#fields.hasErrors('carplateNumber')}" th:errors="*{carplateNumber}"></span>
+		<select id="carplateProvince" name="carplateProvince" size="1" style="width: 48px;"
+			class="required cloneable"
+			th:field="*{carplateProvince}">
+				<blc:all_province type="allProvince"/>
+			<option th:each="province:${allProvince}" th:utext="${province}"
+				th:value="${province}"
+				/>
+		</select>
+		<select name="carplateCity" id="carplateCity" size="1" style="width: 48px;"
+			class="required cloneable"
+			th:field="*{carplateCity}"
+			>
+			<blc:all_province type="allcity"/>
+			<option th:each="city: ${allcity}"
+				th:value="${city}" th:utext="${city}"/>
+		</select>
+	<input type="text" th:field="*{carplateNumber}" class="field30"
+		th:classappend="${#fields.hasErrors('carplateNumber')}? 'fieldError'"
+		th:attr="placeholder=#{register.carplate.number}" />
+</div>

@@ -9,17 +9,22 @@ import org.broadleafcommerce.profile.web.controller.validator.RegisterCustomerVa
 import org.broadleafcommerce.profile.web.core.form.RegisterCustomerForm;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
+import org.taojiaen.controller.account.MyRegisterForm;
+import org.springframework.util.StringUtils;
 
-public class MyRegisterCustomerValidator extends RegisterCustomerValidator{
-	
-	//protected final  String validatePhoneExpression = "^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$";
-	protected final  String validatePhoneExpression = "^(0|86|17951)?[0-9]{11}$";
-	
-	@Resource(name="blCustomerService")
-    private CustomerService customerService;
+public class MyRegisterCustomerValidator extends RegisterCustomerValidator {
+
+	// protected final String validatePhoneExpression =
+	// "^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$";
+	protected final String validatePhoneExpression = "^(0|86|17951)?[0-9]{11}$";
+	protected final String validateCarplateExpression = "[0-9A-Za-z]{5,8}";
+
+	@Resource(name = "blCustomerService")
+	private CustomerService customerService;
+
 	@Override
 	 public void validate(Object obj, Errors errors, boolean useEmailForUsername){
-		RegisterCustomerForm form = (RegisterCustomerForm) obj;
+		 MyRegisterForm form = (MyRegisterForm) obj;
 
         Customer customerFromDb = customerService.readCustomerByUsername(form.getCustomer().getUsername());
 
@@ -55,10 +60,20 @@ public class MyRegisterCustomerValidator extends RegisterCustomerValidator{
             if (!form.getCustomer().getUsername().matches(getValidatePhoneExpression())) {
                 errors.rejectValue("customer.username", "username.phone.invalid", null, null);
             } 
+            
+            if (StringUtils.hasText(form.getCarplateNumber())
+            		 && !form.getCarplateNumber().matches(getValidateCarplateExpression())) {
+            	errors.rejectValue("carplateNumber", "carplate.invalid", null, null);
+            }
         }
 	}
-	
+
 	private String getValidatePhoneExpression() {
 		return validatePhoneExpression;
 	}
+
+	public String getValidateCarplateExpression() {
+		return validateCarplateExpression;
+	}
+
 }

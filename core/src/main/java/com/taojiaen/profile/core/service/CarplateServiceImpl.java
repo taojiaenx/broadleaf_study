@@ -6,23 +6,45 @@ import org.broadleafcommerce.profile.core.domain.CustomerAttributeImpl;
 
 public class CarplateServiceImpl implements CarplateSerivce{
 	
-	protected static final String CAR_PLATE="CAR_PLAT";
+	protected static final String CAR_PLATE_PROVICE="CAR_PLATE_PROVICE";
+	protected static final String CAR_PLATE_CITY = "CAR_PLATE_CITY";
+	protected static final String CAR_PLATE_NUMBER = "CAR_PLATE_NUMBER";
 
 	@Override
-	public String getCarplate(final Customer customer) {
-		CustomerAttribute attr  = customer.getCustomerAttributes().get(CAR_PLATE);
-		if (attr != null) {
-			return attr.getValue();
+	public Carplate getCarplate(final Customer customer) {
+		final Carplate result = new Carplate();
+		CustomerAttribute attrProvice  = customer.getCustomerAttributes().get(CAR_PLATE_PROVICE);
+		if (attrProvice != null) {
+			result.setCarplateProvince(attrProvice.getValue());
 		}
-		return "";
+		CustomerAttribute attrCity = customer.getCustomerAttributes().get(CAR_PLATE_CITY);
+		if (attrCity != null) {
+			result.setCarplateCity(attrCity.getValue());
+		}
+		CustomerAttribute attrNumber = customer.getCustomerAttributes().get(CAR_PLATE_NUMBER);
+		if (attrNumber != null) {
+			result.setCarplateNumber(attrNumber.getValue());
+		}
+		return result;
 	}
 
 	@Override
-	public String putCarplate(final Customer customer, final String carplate) {
-		CustomerAttribute attr = new CustomerAttributeImpl();
-		attr.setName(CAR_PLATE);
-		attr.setValue(carplate);
-		customer.getCustomerAttributes().put(CAR_PLATE, attr);
+	public Carplate putCarplate(final Customer customer, final Carplate carplate) {
+		CustomerAttribute attrProvice  = new CustomerAttributeImpl();
+		attrProvice.setName(CAR_PLATE_PROVICE);
+		attrProvice.setValue(carplate.getCarplateProvince());
+		attrProvice.setCustomer(customer);
+		customer.getCustomerAttributes().put(CAR_PLATE_PROVICE, attrProvice);
+		CustomerAttribute attrCity  = new CustomerAttributeImpl();
+		attrCity.setName(CAR_PLATE_CITY);
+		attrCity.setValue(carplate.getCarplateCity());
+		attrCity.setCustomer(customer);
+		customer.getCustomerAttributes().put(CAR_PLATE_CITY, attrCity);
+		CustomerAttribute attrNumber  = new CustomerAttributeImpl();
+		attrNumber.setName(CAR_PLATE_NUMBER);
+		attrNumber.setValue(carplate.getCarplateNumber());
+		attrNumber.setCustomer(customer);
+		customer.getCustomerAttributes().put(CAR_PLATE_NUMBER, attrNumber);
 		return carplate;
 	}
 

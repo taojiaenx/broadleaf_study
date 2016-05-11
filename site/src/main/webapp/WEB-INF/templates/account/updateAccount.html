@@ -5,6 +5,7 @@
         
         <h2>Update Account Information</h2>
             <blc:form class="manage-account" action="#" th:action="@{/account}" th:object="${updateAccountForm}" method="POST" style="width: 400px;">
+            <div  th:substituteby="account/partials/updateCarplate"/> 
             <div class="form100">
             <label for="emailAddress">phoneNumber:</label>
             <span class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>

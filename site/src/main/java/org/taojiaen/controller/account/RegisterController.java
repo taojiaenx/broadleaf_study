@@ -24,6 +24,10 @@ import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafRegisterController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.profile.core.domain.Customer;
+import org.broadleafcommerce.profile.core.domain.CustomerAttribute;
+import org.broadleafcommerce.profile.core.domain.CustomerAttributeImpl;
+import org.broadleafcommerce.profile.core.domain.CustomerImpl;
+import org.broadleafcommerce.profile.core.domain.CustomerPhoneImpl;
 import org.broadleafcommerce.profile.web.core.form.RegisterCustomerForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +36,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.taojiaen.profile.core.service.Carplate;
+import com.taojiaen.profile.core.service.CarplateSerivce;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,6 +49,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/register")
 public class RegisterController extends BroadleafRegisterController {
+	@Resource(name = "tjeCarplateService")
+	protected CarplateSerivce carplateService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String register(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -50,7 +60,7 @@ public class RegisterController extends BroadleafRegisterController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String processRegister(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors)
+			@ModelAttribute("registrationForm") MyRegisterForm registerCustomerForm, BindingResult errors)
 			throws ServiceException, PricingException {
 		String unencodedPassword = registerCustomerForm.getPassword();
 		Customer customer = registerCustomerForm.getCustomer();
@@ -58,14 +68,17 @@ public class RegisterController extends BroadleafRegisterController {
 			customer.setUsername(customer.getEmailAddress());
 		}
 		customer.setFirstName(customer.getUsername());
-		
-
 
 		registerCustomerValidator.validate(registerCustomerForm, errors, useEmailForLogin);
+
 		if (!errors.hasErrors()) {
 			Customer newCustomer = customerService.registerCustomer(registerCustomerForm.getCustomer(),
 					registerCustomerForm.getPassword(), registerCustomerForm.getPasswordConfirm());
 			assert (newCustomer != null);
+			if (org.springframework.util.StringUtils.hasText(registerCustomerForm.getCarplateNumber())) {
+				carplateService.putCarplate(newCustomer, new Carplate(registerCustomerForm.getCarplateProvince(),
+						registerCustomerForm.getCarplateCity(), registerCustomerForm.getCarplateNumber()));
+			}
 
 			// The next line needs to use the customer from the input form and
 			// not the customer returned after registration
@@ -106,7 +119,11 @@ public class RegisterController extends BroadleafRegisterController {
 	}
 
 	@ModelAttribute("registrationForm")
-	public RegisterCustomerForm initCustomerRegistrationForm() {
-		return super.initCustomerRegistrationForm();
+	public MyRegisterForm initCustomerRegistrationForm() {
+		RegisterCustomerForm superForm = super.initCustomerRegistrationForm();
+
+		MyRegisterForm form = new MyRegisterForm();
+		form.setCustomer(superForm.getCustomer());
+		return form;
 	}
 }
