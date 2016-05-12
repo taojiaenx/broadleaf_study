@@ -61,7 +61,7 @@ $(function(){
     // This will trigger on any input with class "addToCart" or "addToWishlist"
     $('body').on('click', 'input.addToCart,input.addToWishlist', function() {
         var $button = $(this),
-            $container = $button.closest('.product_container'),
+            $container = $button.closest('.goods-item'),
             $form = $button.closest('form'),
             $options = $container.find('span.option-value'),
             $errorSpan = $container.find('span.error');
