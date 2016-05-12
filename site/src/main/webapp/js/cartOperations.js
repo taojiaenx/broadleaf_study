@@ -22,7 +22,11 @@ $(function(){
         var singularItem = $('span#headerCartItemWordSingular_i18n').text();
         var plurarlItem = $('span#headerCartItemWordPlural_i18n').text();
 
-        $('.headerCartItemsCount').html(newCount);
+        var countAry =[];
+        countAry.push(' (');
+        countAry.push(newCount.toString());
+        countAry.push(')');
+        $('.headerCartItemsCount').html(countAry.join(''));
         $('.headerCartItemsCountWord').html((newCount == 1) ? singularItem: plurarlItem);
     }
     
@@ -141,9 +145,9 @@ $(function(){
                         }
                         
                         if (wishlistAdd) {
-                            HC.showNotification(data.productName + "  has been added to your wishlist!");
+                            HC.showNotification(data.productName + "  加入心愿单!");
                         } else {
-                            HC.showNotification(data.productName + "  has been added to the cart!", 2000);
+                            HC.showNotification(data.productName + "  加入购物车!", 2000);
                         }
                     }
                 }
