@@ -7,6 +7,9 @@
     </div>
     <blc:menu resultVar="menuItems" menuName="Header Nav" />
     <div class="container">
+    <div class="header-logo">
+                <a class="logo ir" th:href="@{/}">xxxx</a>
+            </div>
     <div class="header-nav">
      <ul  class="nav-list J_navMainList clearfix" th:if="${not #lists.isEmpty(menuItems)}">
         <li class="nav-item" th:each="menuItem : ${menuItems}">
