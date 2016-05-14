@@ -1862,7 +1862,7 @@ input[type="submit"].small:hover, a.small-button:hover,
 }
 
 input[type="submit"].red:hover, a.red-button:hover {
-    background-color: #ff936a;
+    background-color: #ef5b00;
 }
 
 input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover {
