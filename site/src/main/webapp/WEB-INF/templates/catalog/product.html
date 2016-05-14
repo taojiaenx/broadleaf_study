@@ -27,7 +27,7 @@
 					<div class="pro-info product_container">
 						<div class="pro-title clearfix">
 							<h1>
-								<span class="pro-name J_proDesc" th:utext="*{name}" /> <span
+								<div class="pro-name J_proDesc" th:utext="*{name}" /> <div
 									id="price"
 									th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}"
 									class="pro-price J_proPrice">
@@ -35,17 +35,17 @@
 										th:classappend="*{onSale}? 'sale'"></div>
 									<div blc:price="*{retailPrice}"
 										th:classappend="*{onSale}? 'has-sale'"></div>
-								</span> <span id="price"
+								</div> <div id="price"
 									th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}"
 									class="pro-price J_proPrice">
-									<div style="display: inline-block"
+									<div 
 										blc:price="*{defaultSku.salePrice}"
 										th:if="*{defaultSku.onSale}"
 										th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-									<div style="display: inline-block"
+									<div
 										blc:price="*{defaultSku.retailPrice}"
 										th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
-								</span>
+								</div>
 							</h1>
 						</div>
 						<div th:substituteby="catalog/partials/productOptions" />
