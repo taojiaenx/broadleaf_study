@@ -5,6 +5,7 @@
             <span class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
             <input type="text" name="phoneNumber" id="phoneNumber" th:field="*{phoneNumber}" class="field50" th:classappend="${#fields.hasErrors('phoneNumber')}? 'fieldError'"/>
         </div>
+        <div  th:substituteby="account/partials/updateCarplate"/> 
         <div class="form50">
             <label for="emailAddress">Email Address:</label>
             <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>

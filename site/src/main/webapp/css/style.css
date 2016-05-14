@@ -1837,6 +1837,7 @@ input[type="submit"].small, a.small-button {
 input[type="submit"].red, a.red-button {
     color: white;
     background-color: #ff6700;
+    border: none;
 }
 
 input[type="submit"].dark, a.dark-button, #featured_products {

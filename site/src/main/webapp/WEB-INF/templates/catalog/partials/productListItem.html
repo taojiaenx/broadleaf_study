@@ -44,6 +44,12 @@
 	</div>
 </div>
 
+<div style="display: none;" th:id="*{'productOptions' + id}" class="product-options modal">
+    <h3 th:utext="*{name}"></h3>
+    <div class="product-options" th:substituteby="catalog/partials/productOptions"/>
+    <input type="button" class="addToCart" th:value="#{product.buyNow}" />
+</div>
+
 <!--  <div th:if="*{featuredProduct}" class="new_badge">New!</div>
 
 <div class="image">

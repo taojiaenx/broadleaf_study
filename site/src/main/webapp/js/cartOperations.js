@@ -65,8 +65,11 @@ $(function(){
     // This will trigger on any input with class "addToCart" or "addToWishlist"
     $('body').on('click', 'input.addToCart,input.addToWishlist', function() {
         var $button = $(this),
-            $container = $button.closest('.goods-item'),
-            $form = $button.closest('form'),
+            $container = $button.closest('.goods-item');
+        if ($container.length == 0) {
+        	$container = $button.closest('.product_container');
+        }
+            var $form = $button.closest('form'),
             $options = $container.find('span.option-value'),
             $errorSpan = $container.find('span.error');
             $productOptionsSpan = $container.find('span.productOptionsSpan');
@@ -84,7 +87,8 @@ $(function(){
             wishlistAdd = $button.hasClass('addToWishlist');
             
         if (itemRequest.hasProductOptions == "true" && !modalClick) {
-            $.modal($('#productOptions' + itemRequest.productId), modalProductOptionsOptions);
+          //  $.modal($('#productOptions' + itemRequest.productId), modalProductOptionsOptions);
+        	return true; 
         } else {
             $options.each(function(index, element) {
             	var optionType = $(element).data('optiontype');
@@ -112,6 +116,7 @@ $(function(){
                     data: itemRequest
                 }, function(data, extraData) {
                     if (data.error) {
+                    	console.log("error");
                         if (data.error == 'allOptionsRequired') {
                             $errorSpan.css('display', 'block');
                             $errorSpan.effect('highlight', {}, 1000);
