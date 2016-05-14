@@ -1,7 +1,7 @@
 <header>
     <div class="site-header site-mini-header">
         <div class="container">
-        <div class="topbar-cart" id="J_miniCartTrigger">
+        <div class="topbar-cart topbar-info" id="J_miniCartTrigger">
             <a class="cart-mini" id="J_miniCartBtn" th:href="@{/cart}">
                 <i class="iconfont"></i>
                 购物车
@@ -25,7 +25,6 @@
             <div class="topbar-info"  id="J_userInfo"
             th:unless="${customer.anonymous}">
                 <span><span th:utext="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:utext="${customer.firstName}"></a></span>
-                <span class="sep">|</span> 
                 <a class="link" th:href="@{/logout}">
                     <span th:utext="#{home.logout}">Logout</span>
                 </a>
